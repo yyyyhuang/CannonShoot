@@ -1,3 +1,6 @@
+package CannorShoot;
+
+
 public class Ball {
     private int x;
     private int y;
