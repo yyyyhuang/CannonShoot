@@ -1,14 +1,15 @@
-package CannorShoot;
+package CannonShoot;
 
 import javax.swing.JFrame;
 
 public class Game {
     public static void main(String[] args) {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setContentPane(new GamePanel());
-        window.pack(); // sizes the frame so that all its contents are at or above their preferred sizes
-        window.setVisible(true);
-        window.setResizable(false);
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(new GamePanel());
+        frame.setTitle("Cannon Shoot");
+        frame.pack(); // sizes the frame so that all its contents are at or above their preferred sizes
+        frame.setVisible(true);
+        frame.setResizable(false);
     }
 }

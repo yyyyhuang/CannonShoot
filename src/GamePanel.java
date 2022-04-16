@@ -1,4 +1,4 @@
-package CannorShoot;
+package CannonShoot;
 
 public class GamePanel {
     
