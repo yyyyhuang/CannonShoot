@@ -22,4 +22,8 @@ public class Ball {
     public int getX() {return x;}
 	public int getY() {return y;}
 	public int getDiameter() {return diameter;}
+
+    public void update() {
+        
+    }
 }
