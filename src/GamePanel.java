@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 
 public class GamePanel extends JPanel implements Runnable, MouseListener, MouseMotionListener{
-    
+    //yes
     public static int WIDTH = 1200;
 	public static int HEIGHT = 600;
     public static int UNIT_SIZE = 25; // maybe this is ball size
