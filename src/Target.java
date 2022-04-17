@@ -12,4 +12,7 @@ public class Target {
         this.x = random.nextInt(GamePanel.WIDTH / 2);
         this.y = random.nextInt(GamePanel.HEIGHT);
     }
+
+    public int getX(){return this.x;}
+    public int getY(){return this.y;}
 }

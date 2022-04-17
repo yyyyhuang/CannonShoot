@@ -4,17 +4,16 @@ package CannonShoot;
 public class Ball {
     private int x;
     private int y;
-    private int diameter;
+    static int DIAMETER = 25;
 
     private int speedX;
     private int speedY;
 
     private double velocity;
 
-    public Ball(int x, int y, int diameter, int speedX, int speedY){
+    public Ball(int x, int y, int speedX, int speedY){
         this.x = x;
         this.y = y;
-        this.diameter = diameter;
         this.speedX = speedX;
         this.speedY = speedY;
     }
@@ -23,7 +22,8 @@ public class Ball {
 	public int getY() {return y;}
 	public int getDiameter() {return diameter;}
 
+    // NOT SURE IF NEEDED
     public void update() {
-        
+
     }
 }

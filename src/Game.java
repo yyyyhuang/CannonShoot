@@ -13,7 +13,7 @@ public class Game {
         JPanel p = new JPanel();
         p.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         // p.setLayout(new GridLayout(0, 1));
-        JButton b = new JButton("click");
+        JButton b = new JButton("restart");
         
         p.add(b);
         frame.add(p, BorderLayout.CENTER);
@@ -23,7 +23,7 @@ public class Game {
         frame.setTitle("Cannon Shoot");
         frame.pack(); // sizes the frame so that all its contents are at or above their preferred sizes
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
 
 
         
