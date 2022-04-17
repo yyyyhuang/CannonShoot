@@ -13,9 +13,15 @@ public class Game {
         JPanel p = new JPanel();
         p.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         // p.setLayout(new GridLayout(0, 1));
+<<<<<<< HEAD
         JButton b = new JButton("restart");
         
+=======
+        JButton b = new JButton("click");
+        Cannon c = new Cannon();
+>>>>>>> 2716ac95f4170a8e06982ad26903e3b9418a44b5
         p.add(b);
+        p.add(c);
         frame.add(p, BorderLayout.CENTER);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
