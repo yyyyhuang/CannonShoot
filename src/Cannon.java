@@ -1,4 +1,3 @@
-package CannonShoot;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,70 +5,44 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 
 public class Cannon {
-    private int angle;
-<<<<<<< HEAD
-    private int power;
-    
-
-=======
+    private double angle;
 	private int size;
 	private int power;
-    private int diameter = 100;
-	private int width = 300;
+    private int cannonWidth = 100;
+	private int cannonLength = 300;
 	
 	private int x = 200;
 	// private int y = GamePanel.HEIGHT - diameter - 50;
     private int y = 50;
 
-public Cannon() {
-}
+public Cannon() {}
 
+// draw a graph, not only draw the cannon
 public Graphics2D draw(Graphics2D g, int angle, int size, int power) {
-		
     this.angle = angle;
     this.size = size;
     this.power = power;
-
-    
     //g = drawBalls(g);
     g = drawCannon(g);
     //g = drawButtons(g);
     //g = drawColorSelection(g);
-    
     return g;
-    
-    
->>>>>>> 2716ac95f4170a8e06982ad26903e3b9418a44b5
 }
 
+
 private Graphics2D drawCannon(Graphics2D g) {
-	
-    diameter = size + 50;
-    
-    //-------- Turn Cannon ----------//
-    int xPoly[] = {x, x + width, x + width, x}; 
-    // four corners of cannon, left-down, right-down, right uppper, left-upper
-    int yPoly[] = {y, y, y + diameter,y + diameter};
-    
-    int i;
-    for (i = 0; i < xPoly.length; i++){
-        int newXY[] = rotateXY(xPoly[i], yPoly[i], angle, x, y + diameter);
-        xPoly[i] = newXY[0];
-        yPoly[i] = newXY[1];
+    // initially set the cannon laid horizontally where its left corners has the same heititude as corresponding right corners
+    int[] xAxis = {this.x, this.x + cannonLength, this.x, this.x + cannonLength};
+    // four corners of cannon, left-down 0, right-down 1, left-upper 2 , right uppper 3
+    int[] yAxis = {this.y, this.y, this.y + cannonWidth, this.y + cannonWidth};
+    // Turn cannon with degree of angle
+    for(int i = 1; i < 4; i++){
+        xAxis[i] = rotateX(xAxis[i], yAxis[i], this.angle);
+        yAxis[i] = rotateY(xAxis[i], yAxis[i], this.angle);
     }
-    for (i = 0; i < xPoly.length; i++){
-        yPoly[i] = yPoly[i] + y + 100 - yPoly[3]; //keeps it fixed to the corner
-    }
-    
-    /*
-    // Where the ball will be spawning
-    ballX = xPoly[1];
-    ballY = yPoly[1];
-    ballX += xPoly[2] - xPoly[1] - diameter - 2;
-    */
-    //Cannon
+
     g.setColor(Color.BLACK);
-    Polygon poly = new Polygon(xPoly, yPoly, xPoly.length);
+    Polygon poly = new Polygon(xAxis, yAxis, 4);
     g.fillPolygon(poly);
     //Wheel
     g.setColor(new Color(139,69,19));
@@ -78,4 +51,15 @@ private Graphics2D drawCannon(Graphics2D g) {
     return g;
 }
 
+private int rotateX(int xPos, double yPos, double angle){
+    // allow the cannon to rotate around left-lower-corner
+    double rotatedX = (xPos - this.x)*Math.cos(angle / 100) - (yPos - y)*Math.sin(angle/100);
+    int newX =(int) (this.x + rotatedX);
+    return newX;
+}
+private int rotateY(double xPos, double yPos, double angle){
+    double rotatedY = (xPos - this.x)*Math.sin(angle / 100) + (yPos - this.y)*Math.cos(angle/100);
+    int newY =(int) (this.y + rotatedY);
+    return newY;
+}
 }

@@ -1,13 +1,13 @@
 import java.util.Random;
-import javax.swing.JPanel;
-import CannonShoot.GamePanel;
+// import javax.swing.JPanel;
+// import CannonShoot.GamePanel;
 
-public class Target {
+public class Objective {
     
     private int x;
     private int y;
 
-    Target() {
+    public Objective() {
         Random random = new Random();
         this.x = random.nextInt(GamePanel.WIDTH / 2);
         this.y = random.nextInt(GamePanel.HEIGHT);

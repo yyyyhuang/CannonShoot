@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements Runnable, MouseListener, MouseM
 
     private boolean running;
 
-    private Target target = new Target();
+    private Objective target = new Objective();
     private Cannon cannon = new Cannon();
     private SliderInput angleSlider = new SliderInput(50, 155, 157, 0, "Angle");
     private SliderInput powerSlider = new SliderInput(50, 295, 150, 0, "Power");
@@ -46,6 +46,6 @@ public class GamePanel extends JPanel implements Runnable, MouseListener, MouseM
     }
 
     public void newTarget() {
-        this.target = new Target();
+        this.target = new Objective();
     }
 }
