@@ -1,0 +1,27 @@
+The Final Projects
+------------------
+
+General Notes
+-------------
++ You can choose one of the projects listed below.
++ You can work in groups. For project 1, the group size <= 2. For project 2, the group size <= 3. The number of members do not affect your grade.
++ If you do project 2 successfully, you will get an additional 8% towards your final score. For example, if your final grade is 81% (B-) your score will become 89% (B+).
++ For the second project, we do not go over every single detail. Please use common sense. The goal is to design a playable game.
+
+Timeline
+--------
++ Choose a project by Friday April 15. Each group should send me _one_ email listing the group members and the chosen project. You cannot change the project after this.
++ Deadline for project submission is April 29. You must submit (1) your source code (2) instructions on how to run the code.
++ Presentations happen on May 2, the last day of the class. One member of the group should give a 10-minute presentation about the project and run a live demo. All members of the group should be ready to answer questions from the instructor and other students. 
+
+Projects
+--------
+=> Project 1: Blackjack simulator
+See the attached file.
+
+=> Project 2: An artillery game (https://en.wikipedia.org/wiki/Artillery_game)
+In each round of the game, the cannon must be located at a random distance from the target. The user enters two parameters: angle and power. Angle defines the angle of the cannon. Power its power!
+For reference you can look at this video which shows the 2-player version of this game.
+https://www.youtube.com/watch?v=BWuqOXPasms
+NOTE 1: The game you will implement will be single player. The cannon is on the left, the target is on the right. In each round, the location of the target should change (or the cannon's location should change).
+NOTE 2: Compared to the game you see in the video, we do not want color, wind, sound, random terrain generation, terrain destruction. Just the basic game. Only the location of the 

@@ -1,18 +1,21 @@
 import java.util.Random;
-import javax.swing.JPanel;
-import CannonShoot.GamePanel;
 
-public class Target {
-    
+public class CannonTarget {
+
     private int x;
     private int y;
 
-    Target() {
+    CannonTarget() {
         Random random = new Random();
-        this.x = random.nextInt(GamePanel.WIDTH / 2);
-        this.y = random.nextInt(GamePanel.HEIGHT);
+        this.x = random.nextInt(GamePanel.WIDTH / 2, GamePanel.WIDTH);
+        this.y = random.nextInt(150, GamePanel.HEIGHT - 80);
     }
 
-    public int getX(){return this.x;}
-    public int getY(){return this.y;}
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
 }

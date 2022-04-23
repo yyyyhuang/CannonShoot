@@ -1,29 +1,16 @@
-package CannonShoot;
 
+// draw balls
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class Ball {
-    private int x;
-    private int y;
-    static int DIAMETER = 25;
+    private static final int DIAMETER = 20;
 
-    private int speedX;
-    private int speedY;
-
-    private double velocity;
-
-    public Ball(int x, int y, int speedX, int speedY){
-        this.x = x;
-        this.y = y;
-        this.speedX = speedX;
-        this.speedY = speedY;
+    public Ball() {
     }
 
-    public int getX() {return x;}
-	public int getY() {return y;}
-	public int getDiameter() {return diameter;}
-
-    // NOT SURE IF NEEDED
-    public void update() {
-
+    public void drawBall(Graphics g, int x, int y) {
+        g.setColor(Color.orange);
+        g.fillOval(x-DIAMETER/2, y-DIAMETER/2, DIAMETER, DIAMETER);
     }
 }
