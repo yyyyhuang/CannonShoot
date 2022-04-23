@@ -1,7 +1,5 @@
 import javax.swing.JButton;
 import javax.swing.JPanel;
-//import javax.swing.event.ChangeEvent;
-//import javax.swing.event.ChangeListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -14,7 +12,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     protected static int HEIGHT = 600;
     protected static int UNIT_SIZE = 20;
 
-    private final int TIME = 30;
+    private final int TIME = 35;
     private boolean running = false;
     Graphics g;
 
@@ -33,23 +31,13 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         JButton fire = new JButton("FIRE");
         JButton restart = new JButton("RESTART");
-        angleSlider = new NewSlider("Angle");
-        //angleSlider.addChangeListener(this);
-        powerSlider = new NewSlider("Power");
-        //powerSlider.addChangeListener(this);
-
-        //add(fire);
-        //add(restart);
-        //add(angleSlider);
-        //add(angleSlider.label);
-        //add(powerSlider);
-        //add(powerSlider.label);
+        angleSlider = new NewSlider("Angle", 0, 90, 45, 20);
+        powerSlider = new NewSlider("Power", 15, 30, 22, 5);
+ 
         fire.addActionListener(this);
         restart.addActionListener(this);
-        fire.setBounds(130, 230, 80, 30);
-        restart.setBounds(990, 80, 120, 30);
-        
-        add(fire);//
+
+        add(fire);
         add(restart);//
         add(angleSlider);//
         add(angleSlider.label);//
@@ -99,17 +87,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         }
 
     }
-/*
-    @Override
-    public void stateChanged(ChangeEvent e) {
-        if (e.getSource() == angleSlider) {
-            angleSlider.label.setText("angle: " + angleSlider.getValue());
-        }
-        if (e.getSource() == powerSlider) {
-            powerSlider.label.setText("power: " + powerSlider.getValue());
-        }
-    }
-*/
+
     // ----------------- RUN THE GAME -----------------//
     public void paint(Graphics g) {
         super.paint(g);
