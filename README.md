@@ -7,3 +7,4 @@ Rules:
 - If miss the target, readjust slider till hit the target
 - RESTART button to generate new target
 
+![screenshot](Screenshot.png)
