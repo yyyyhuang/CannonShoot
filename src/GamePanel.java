@@ -49,6 +49,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     public void startGame() {
         running = true;
         newTarget();
+        this.angleSlider.setEnabled(true);
+        this.powerSlider.setEnabled(true);
     }
 
     // ----------------- TARGET -----------------//
@@ -68,7 +70,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
     }
 
-    // ----------------- SLIDERS -----------------//
+    // ----------------- BUTTONS -----------------//
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -103,11 +105,15 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.y = this.y - (int) ((powerSlider.getValue() * Math.sin(angleSlider.getValue() * Math.PI / 180)
                         - 0.5 * 9.8));
                 // delta_y = (velocity_y + delta_velocity_y) * delta_t
+                this.angleSlider.setEnabled(false);
+                this.powerSlider.setEnabled(false);
             }
 
             if (this.x > WIDTH || this.y > HEIGHT) {
                 this.click = false;
                 // pop dialog to restart
+                this.angleSlider.setEnabled(true);
+                this.powerSlider.setEnabled(true);
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
@@ -120,7 +126,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 Thread.sleep(TIME);
             } catch (Exception e) {
             }
-            ;
+            
             repaint();
         }
     }
