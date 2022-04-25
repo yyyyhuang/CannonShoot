@@ -20,8 +20,7 @@ public class Cannon {
     private void rotate() {
         // rotate the cannon around left-lower corner of cannon
 
-        // four corners of cannon, left-down 0, right-down 1, left-upper 2 , right
-        // uppper 3
+        // four corners of cannon, left-down 0, right-down 1, right-upper 2 , left uppper 3
 
         this.xAxis[1] = (int) (X + LENGTH * Math.cos(this.angle));
         this.yAxis[1] = (int) (Y - LENGTH * Math.sin(this.angle));
