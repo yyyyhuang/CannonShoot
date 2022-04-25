@@ -33,16 +33,16 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         JButton restart = new JButton("RESTART");
         angleSlider = new NewSlider("Angle", 0, 90, 45, 20);
         powerSlider = new NewSlider("Power", 15, 30, 22, 5);
- 
+
         fire.addActionListener(this);
         restart.addActionListener(this);
 
         add(fire);
-        add(restart);//
-        add(angleSlider);//
-        add(angleSlider.label);//
-        add(powerSlider);//
-        add(powerSlider.label);//
+        add(restart);
+        add(angleSlider);
+        add(angleSlider.label);
+        add(powerSlider);
+        add(powerSlider.label);
         startGame();
     }
 
@@ -111,14 +111,15 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
             if (this.x > WIDTH || this.y > HEIGHT) {
                 this.click = false;
+<<<<<<< Updated upstream
                 // pop dialog to restart
                 this.angleSlider.setEnabled(true);
                 this.powerSlider.setEnabled(true);
+=======
+>>>>>>> Stashed changes
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
-                //this.x = this.target.getX();
-                //this.y = this.target.getY();
                 this.click = false;
             }
 
