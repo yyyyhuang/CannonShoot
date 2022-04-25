@@ -22,9 +22,6 @@ public class Graph extends JPanel {
         // center of the target is (tX - 10, tY - 10);
         // when both x and y axis distances are smaller than diameter, it means booms
         if (Math.abs(x - tX) < 20 && Math.abs(y - tY) < 20) {
-
-            // g.setColor(Color.GREEN);
-            // g.fillOval(tX - 20, tY - 20, 40, 40);
             ball.drawBall(g, x, y);
             this.drawBoom(g, tX - 20, tY - 20);
         }

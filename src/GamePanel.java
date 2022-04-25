@@ -111,12 +111,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
             if (this.x > WIDTH || this.y > HEIGHT) {
                 this.click = false;
-<<<<<<< Updated upstream
-                // pop dialog to restart
                 this.angleSlider.setEnabled(true);
                 this.powerSlider.setEnabled(true);
-=======
->>>>>>> Stashed changes
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
@@ -127,7 +123,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 Thread.sleep(TIME);
             } catch (Exception e) {
             }
-            
+
             repaint();
         }
     }

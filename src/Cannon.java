@@ -50,32 +50,21 @@ public class Cannon {
          * y = y-(r/2);
          * g.fillOval(x,y,r,r);
          */
-        //g.setColor(Color.RED);
-        //g.fillOval(X - 21, Y - 21, 42, 42);
-        //g.setColor(Color.gray);
-        //g.fillOval(X - 15, Y - 15, 30, 30);
-/*
-        int[] headX = {X, X, X-60, X-60};
-        int[] headY = {Y+5, Y-35, Y-35, Y+5};
-        g.setColor(Color.BLACK);
-        
-        g.fillPolygon(headX, headY, 4);
 
-    */
-        int[] bodyX = {X+30, X+30, X-90, X-90};
-        int[] bodyY = {Y, Y+50, Y+50, Y};
+        int[] bodyX = { X + 30, X + 30, X - 90, X - 90 };
+        int[] bodyY = { Y, Y + 50, Y + 50, Y };
         g.setColor(Color.BLACK);
         g.fillPolygon(bodyX, bodyY, 4);
         g.setColor(Color.GRAY);
-        g.fillOval(X-20, Y+29, 40,40);
+        g.fillOval(X - 20, Y + 29, 40, 40);
         g.setColor(Color.GRAY);
-        g.fillOval(X-80, Y+29, 40, 40);
+        g.fillOval(X - 80, Y + 29, 40, 40);
         g.setColor(Color.RED);
-        g.fillOval(X-10, Y+39, 20,20);
+        g.fillOval(X - 10, Y + 39, 20, 20);
         g.setColor(Color.RED);
-        g.fillOval(X-70, Y+39, 20, 20);
+        g.fillOval(X - 70, Y + 39, 20, 20);
         g.setColor(Color.BLACK);
-        g.fillRoundRect(X-60, Y-35, 60, 40, 15, 15);
+        g.fillRoundRect(X - 60, Y - 35, 60, 40, 15, 15);
         return g;
     }
 
