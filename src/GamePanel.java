@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     private int x; // x-axis of ball
     private int y; // y-axis of ball
     private boolean click = false;
+    private double flicker = 3;
 
     NewSlider angleSlider;
     NewSlider powerSlider;
@@ -93,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     // ----------------- RUN THE GAME -----------------//
     public void paint(Graphics g) {
         super.paint(g);
-        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click);
+        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click, this.flicker);
         this.g = g;
     }
 
@@ -116,6 +117,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
+                if(this.flicker > 1){
+                    this.flicker = this.flicker - 0.1;
+                }
                 this.click = false;
             }
 
