@@ -13,6 +13,7 @@ public class NewSlider extends JSlider {
         this.setPaintTrack(true);
         this.setMajorTickSpacing(spacing);
         this.setPaintLabels(true);
+        this.setOpaque(false);
         label.setText(title);
         label.setFont(new Font("MV Boli", Font.PLAIN, 15));
     }
