@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         try {
             pang = ImageIO.read(new File("Picture4.jpg"));
         }
-        catch (IOException e){System.out.println("error!"+e);}
+        catch (IOException e){}
 
         add(fire);
         add(restart);
