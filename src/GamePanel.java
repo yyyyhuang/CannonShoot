@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     GamePanel() {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
+        this.setBackground(new Color(197, 234, 243));
 
         JButton fire = new JButton("FIRE");
         JButton restart = new JButton("RESTART");
@@ -94,6 +95,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     // ----------------- RUN THE GAME -----------------//
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(new Color(28, 232, 119));
+		g.fillRect(0, HEIGHT - 50, WIDTH, 50);
         image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click, this.flicker);
         this.g = g;
     }
