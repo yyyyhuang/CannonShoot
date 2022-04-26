@@ -49,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         try {
             pang = ImageIO.read(new File("Picture4.jpg"));
         }
-        catch (IOException e){}
+        catch (IOException e){System.out.println("error!"+e);}
 
         add(fire);
         add(restart);
@@ -79,10 +79,12 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     }
 
     public void drawTarget(Graphics g) {
-        // g.setColor(Color.BLUE);
-        // centered at getx() and gety()
-        // g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
-        g.drawImage(pang, this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, 60, 60, this);
+        
+        // x, y is the position of left-upper corner of this image
+        // adjust the coordinate to make the graph centered at getx() and gety()
+        g.drawImage(pang, this.target.getX() - 30, this.target.getY()-30, 60, 60, this);
+        //g.setColor(Color.BLACK);
+        //g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
     }
 
     // ----------------- BUTTONS -----------------//
@@ -135,7 +137,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.angleSlider.setEnabled(true);
                 this.powerSlider.setEnabled(true);
             }
-            if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
+            // since the image is not perfect circle, we take off 3 from radius for adjustment
+            if (Math.abs(this.x - this.target.getX()) < 37 && Math.abs(this.y - this.target.getY()) < 37) {
                 // when the ball in the boom range, make it static and show the boomed
                 if (this.flicker > 1) {
                     this.flicker = this.flicker - 0.1;
