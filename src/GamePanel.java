@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class GamePanel extends JPanel implements Runnable, ActionListener {
 
@@ -27,10 +31,12 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     NewSlider angleSlider;
     NewSlider powerSlider;
 
+    private BufferedImage pang;
+
     GamePanel() {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
-        this.setBackground(new Color(197, 234, 243));
+        this.setBackground(new Color(230, 255, 255));
 
         JButton fire = new JButton("FIRE");
         JButton restart = new JButton("RESTART");
@@ -39,6 +45,11 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         fire.addActionListener(this);
         restart.addActionListener(this);
+
+        try {
+            pang = ImageIO.read(new File("Picture4.jpg"));
+        }
+        catch (IOException e){}
 
         add(fire);
         add(restart);
@@ -68,9 +79,10 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     }
 
     public void drawTarget(Graphics g) {
-        g.setColor(Color.BLUE);
+        // g.setColor(Color.BLUE);
         // centered at getx() and gety()
-        g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
+        // g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
+        g.drawImage(pang, this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, 60, 60, this);
     }
 
     // ----------------- BUTTONS -----------------//
