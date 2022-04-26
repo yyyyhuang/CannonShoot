@@ -20,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     private CannonTarget target;
     private int x; // x-axis of ball
     private int y; // y-axis of ball
+    private double gravityTime = 0;
     private boolean click = false;
     private double flicker = 3;
 
@@ -81,11 +82,13 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.click = true;
                 this.x = image.ballStartPos(angleSlider.getValue())[0];
                 this.y = image.ballStartPos(angleSlider.getValue())[1];
+                this.gravityTime = 0;
                 break;
             case "RESTART":
                 this.click = false;
                 this.x = 0;
                 this.y = 0;
+                this.gravityTime = 0;
                 this.startGame();
                 break;
         }
@@ -96,19 +99,21 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(new Color(28, 232, 119));
-		g.fillRect(0, HEIGHT - 50, WIDTH, 50);
-        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click, this.flicker);
+        g.fillRect(0, HEIGHT - 50, WIDTH, 50);
+        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click,
+                this.flicker);
         this.g = g;
     }
 
     public void run() {
         while (running) {
             if (this.click == true) {
+                this.gravityTime = this.gravityTime + 0.1;
                 this.x = this.x + (int) (powerSlider.getValue() * Math.cos(angleSlider.getValue() * Math.PI / 180));
                 // delta_x = velocity_x * delta_t
                 this.y = this.y - (int) ((powerSlider.getValue() * Math.sin(angleSlider.getValue() * Math.PI / 180)
-                        - 0.5 * 9.8));
-                // delta_y = (velocity_y + delta_velocity_y) * delta_t
+                        - 0.5 * 9.8 * this.gravityTime));
+                // delta_y = (velocity_y + delta_velocity_y * delta_t) * delta_t
                 this.angleSlider.setEnabled(false);
                 this.powerSlider.setEnabled(false);
             }
@@ -120,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
-                if(this.flicker > 1){
+                if (this.flicker > 1) {
                     this.flicker = this.flicker - 0.1;
                 }
                 this.click = false;
