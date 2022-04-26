@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     private int x; // x-axis of ball
     private int y; // y-axis of ball
     private boolean click = false;
+    private double flicker = 3;
 
     NewSlider angleSlider;
     NewSlider powerSlider;
@@ -28,21 +29,22 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     GamePanel() {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setFocusable(true);
+        this.setBackground(new Color(197, 234, 243));
 
         JButton fire = new JButton("FIRE");
         JButton restart = new JButton("RESTART");
         angleSlider = new NewSlider("Angle", 0, 90, 45, 20);
         powerSlider = new NewSlider("Power", 15, 30, 22, 5);
- 
+
         fire.addActionListener(this);
         restart.addActionListener(this);
 
         add(fire);
-        add(restart);//
-        add(angleSlider);//
-        add(angleSlider.label);//
-        add(powerSlider);//
-        add(powerSlider.label);//
+        add(restart);
+        add(angleSlider);
+        add(angleSlider.label);
+        add(powerSlider);
+        add(powerSlider.label);
         startGame();
     }
 
@@ -93,7 +95,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     // ----------------- RUN THE GAME -----------------//
     public void paint(Graphics g) {
         super.paint(g);
-        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click);
+        g.setColor(new Color(28, 232, 119));
+		g.fillRect(0, HEIGHT - 50, WIDTH, 50);
+        image.drawGraph(g, angleSlider.getValue(), this.x, this.y, this.target.getX(), this.target.getY(), this.click, this.flicker);
         this.g = g;
     }
 
@@ -111,14 +115,14 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
             if (this.x > WIDTH || this.y > HEIGHT) {
                 this.click = false;
-                // pop dialog to restart
                 this.angleSlider.setEnabled(true);
                 this.powerSlider.setEnabled(true);
             }
             if (Math.abs(this.x - this.target.getX()) < 20 && Math.abs(this.y - this.target.getY()) < 20) {
                 // when the ball in the boom range, make it static and show the boomed
-                //this.x = this.target.getX();
-                //this.y = this.target.getY();
+                if(this.flicker > 1){
+                    this.flicker = this.flicker - 0.1;
+                }
                 this.click = false;
             }
 
@@ -126,7 +130,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 Thread.sleep(TIME);
             } catch (Exception e) {
             }
-            
+
             repaint();
         }
     }

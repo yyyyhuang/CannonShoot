@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c3e1711507afe33856479ca83e9787534776029
 import javax.swing.JFrame;
 
 public class Game {
