@@ -10,6 +10,10 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+import java.io.IOException;
+import java.io.InputStream;
+import javax.sound.sampled.*;
+
 public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     protected static int WIDTH = 1200;
@@ -27,6 +31,10 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     private double gravityTime = 0;
     private boolean click = false;
     private double flicker = 3;
+    Clip bgm;
+    Clip throwSound;
+    Clip boom;
+    boolean playBoom = false;
 
     NewSlider angleSlider;
     NewSlider powerSlider;
@@ -48,8 +56,9 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         try {
             pang = ImageIO.read(new File("Picture4.jpg"));
+        } catch (IOException e) {
+            System.out.println("error in target");
         }
-        catch (IOException e){}
 
         add(fire);
         add(restart);
@@ -57,6 +66,19 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         add(angleSlider.label);
         add(powerSlider);
         add(powerSlider.label);
+
+        try {
+            bgm = AudioSystem.getClip();
+            InputStream isBGM = this.getClass().getClassLoader().getResourceAsStream("kongfu.wav");
+            AudioInputStream aisBGM = AudioSystem.getAudioInputStream(isBGM);
+            bgm.open(aisBGM);
+            bgm.start();
+            bgm.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            System.out.println("Sound Error " + e);
+            e.printStackTrace();
+        }
+
         startGame();
     }
 
@@ -79,12 +101,13 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     }
 
     public void drawTarget(Graphics g) {
-        
+
         // x, y is the position of left-upper corner of this image
         // adjust the coordinate to make the graph centered at getx() and gety()
-        g.drawImage(pang, this.target.getX() - 30, this.target.getY()-30, 60, 60, this);
-        //g.setColor(Color.BLACK);
-        //g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE / 2, UNIT_SIZE, UNIT_SIZE);
+        g.drawImage(pang, this.target.getX() - 30, this.target.getY() - 30, 60, 60, this);
+        // g.setColor(Color.BLACK);
+        // g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE
+        // / 2, UNIT_SIZE, UNIT_SIZE);
     }
 
     // ----------------- BUTTONS -----------------//
@@ -97,6 +120,17 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.x = image.ballStartPos(angleSlider.getValue())[0];
                 this.y = image.ballStartPos(angleSlider.getValue())[1];
                 this.gravityTime = 0;
+                bgm.stop();
+
+                try {
+                    throwSound = AudioSystem.getClip();
+                    InputStream isThrow = this.getClass().getClassLoader().getResourceAsStream("throwSound.wav");
+                    AudioInputStream aisThrow = AudioSystem.getAudioInputStream(isThrow);
+                    throwSound.open(aisThrow);
+                    throwSound.start();
+                } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e1) {
+                    e1.printStackTrace();
+                }
                 break;
             case "RESTART":
                 this.click = false;
@@ -104,6 +138,10 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.y = 0;
                 this.gravityTime = 0;
                 this.startGame();
+                bgm.start();
+                this.playBoom = false;
+                boom.stop();
+
                 break;
         }
 
@@ -136,14 +174,31 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.click = false;
                 this.angleSlider.setEnabled(true);
                 this.powerSlider.setEnabled(true);
+                throwSound.stop();
+                bgm.start();
             }
-            // since the image is not perfect circle, we take off 3 from radius for adjustment
-            if (Math.abs(this.x - this.target.getX()) < 37 && Math.abs(this.y - this.target.getY()) < 37) {
+            // since the image is not perfect circle, we take off 7 from radius for
+            // adjustment
+            if (Math.abs(this.x - this.target.getX()) < 41 && Math.abs(this.y - this.target.getY()) < 41) {
                 // when the ball in the boom range, make it static and show the boomed
                 if (this.flicker > 1) {
                     this.flicker = this.flicker - 0.1;
                 }
                 this.click = false;
+                if (this.playBoom == false) {
+                    this.playBoom = true;
+                    this.throwSound.stop();
+                    try {
+                        boom = AudioSystem.getClip();
+                        InputStream isBoom = this.getClass().getClassLoader().getResourceAsStream("boom4.wav");
+                        AudioInputStream aisBoom = AudioSystem.getAudioInputStream(isBoom);
+                        boom.open(aisBoom);
+                        boom.start();
+                    } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
 
             try {

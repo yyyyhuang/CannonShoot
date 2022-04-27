@@ -13,9 +13,9 @@ public class Ball {
     BufferedImage q;
     public Ball() {
         try {
-            q = ImageIO.read(new File("pokeball_PNG24.png"));
+            q = ImageIO.read(new File("pokeball.png"));
         }
-        catch (IOException e){}
+        catch (IOException e){System.out.println("error in ball");}
     }
 
     public void drawBall(Graphics g, int x, int y) {
@@ -23,6 +23,6 @@ public class Ball {
         g.setColor(Color.orange);
         g.fillOval(x - DIAMETER / 2, y - DIAMETER / 2, DIAMETER, DIAMETER);
         */
-        g.drawImage(q, x - 30, y - 30, 40, 40,  null);
+        g.drawImage(q, x - 20, y - 20, 40, 40,  null);
     }
 }
