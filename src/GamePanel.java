@@ -178,7 +178,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
             }
             // since the image is not perfect circle, we take off 7 from radius for
             // adjustment
-            if (Math.abs(this.x - this.target.getX()) < 41 && Math.abs(this.y - this.target.getY()) < 41) {
+            if (Math.abs(this.x - this.target.getX()) < 40 && Math.abs(this.y - this.target.getY()) < 40) {
                 // when the ball in the boom range, make it static and show the boomed
                 if (this.flicker > 1) {
                     this.flicker = this.flicker - 0.1;

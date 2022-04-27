@@ -22,9 +22,9 @@ public class Graph extends JPanel {
         // center of the target is (tX - 30, tY - 30);
         // when both x and y axis distances are smaller than diameter, it means booms
         // some adjustment since the ball and the target is not circular
-        if (Math.abs(x - tX) < 41 && Math.abs(y - tY) < 41) {
+        if (Math.abs(x - tX) < 40 && Math.abs(y - tY) < 40) {
             ball.drawBall(g, x, y);
-            this.drawBoom(g, tX - 41, tY - 41, flicker);
+            this.drawBoom(g, tX - 40, tY - 40, flicker);
         }
 
         return g;
