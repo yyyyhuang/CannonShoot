@@ -13,7 +13,7 @@ public class Ball {
     BufferedImage q;
     public Ball() {
         try {
-            q = ImageIO.read(new File("pokeball_PNG24.png"));
+            q = ImageIO.read(new File("pokeball.png"));
         }
         catch (IOException e){}
     }

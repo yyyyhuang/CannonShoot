@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     NewSlider powerSlider;
 
     private BufferedImage pang;
+    // private BufferedImage bgImage;
 
     GamePanel() {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -47,7 +48,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         restart.addActionListener(this);
 
         try {
-            pang = ImageIO.read(new File("Picture4.jpg"));
+            pang = ImageIO.read(new File("Picture4.png"));
+            // bgImage = ImageIO.read(new File("bgImage.jpg"));
         }
         catch (IOException e){}
 
@@ -71,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        // g.drawImage(bgImage, 0, 0, null);
         drawTarget(g);
     }
 
