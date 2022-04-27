@@ -1,5 +1,6 @@
 # CannonShoot Game
-Group Member: Yingjie Huang, Chengcheng Lyu
+
+A simple single-user artillery game in Java
 
 Rules:
 - Move angle slider and power slider to adjust cannon angle and ball initial velocity
