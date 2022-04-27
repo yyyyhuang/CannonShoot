@@ -4,7 +4,7 @@ import java.awt.Polygon;
 
 public class Cannon {
     private double angle;
-    private static final int WIDTH = 20; // cannon's width
+    private static final int WIDTH = 30; // cannon's width
     private static final int LENGTH = 80; // cannon's length
     private static final int X = 120; // x-axis of left-lower corner of the connon
     private static final int Y = 520; // y-axis of left-lower corner of the connon
@@ -20,7 +20,8 @@ public class Cannon {
     private void rotate() {
         // rotate the cannon around left-lower corner of cannon
 
-        // four corners of cannon, left-down 0, right-down 1, right-upper 2 , left uppper 3
+        // four corners of cannon, left-down 0, right-down 1, right-upper 2 , left
+        // uppper 3
 
         this.xAxis[1] = (int) (X + LENGTH * Math.cos(this.angle));
         this.yAxis[1] = (int) (Y - LENGTH * Math.sin(this.angle));
@@ -33,7 +34,9 @@ public class Cannon {
     // cannon end position is the place where ball starts, right-upper corner
     protected int[] cannonEnd() {
         this.rotate();
-        int[] endPosition = { this.xAxis[2], this.yAxis[2] };
+        int[] endPosition = {
+                this.xAxis[2] + (int) (WIDTH / 2 * Math.cos(this.angle) - WIDTH / 2 * Math.sin(this.angle)),
+                this.yAxis[2] + (int) (WIDTH / 2 * Math.sin(this.angle) - WIDTH / 2 * Math.cos(this.angle)) };
         return endPosition;
     }
 
@@ -63,7 +66,7 @@ public class Cannon {
         g.setColor(Color.RED);
         g.fillOval(X - 70, Y + 39, 20, 20);
         g.setColor(Color.BLACK);
-        g.fillRoundRect(X - 60, Y - 35, 60, 40, 15, 15);
+        g.fillRoundRect(X - 60, Y - 45, 60, 55, 15, 15);
         return g;
     }
 
