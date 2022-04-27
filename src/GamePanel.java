@@ -55,7 +55,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         restart.addActionListener(this);
 
         try {
-            pang = ImageIO.read(new File("Picture4.jpg"));
+            pang = ImageIO.read(new File("Picture4.png"));
         } catch (IOException e) {}
 
         add(fire);
