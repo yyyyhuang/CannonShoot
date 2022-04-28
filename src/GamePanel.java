@@ -189,7 +189,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                     this.throwSound.stop();
                     try {
                         boom = AudioSystem.getClip();
-                        InputStream isBoom = this.getClass().getClassLoader().getResourceAsStream("boom4.wav");
+                        InputStream isBoom = this.getClass().getClassLoader().getResourceAsStream("boom3.wav");
                         AudioInputStream aisBoom = AudioSystem.getAudioInputStream(isBoom);
                         boom.open(aisBoom);
                         boom.start();
