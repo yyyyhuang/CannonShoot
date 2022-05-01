@@ -39,7 +39,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
     NewSlider powerSlider;
 
     private BufferedImage pang;
-    // private BufferedImage bgImage;
 
     GamePanel() {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -56,7 +55,8 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
         try {
             pang = ImageIO.read(new File("Picture4.png"));
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
 
         add(fire);
         add(restart);
@@ -91,7 +91,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // g.drawImage(bgImage, 0, 0, null);
         drawTarget(g);
     }
 
@@ -104,9 +103,6 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
         // x, y is the position of left-upper corner of this image
         // adjust the coordinate to make the graph centered at getx() and gety()
         g.drawImage(pang, this.target.getX() - 30, this.target.getY() - 30, 60, 60, this);
-        // g.setColor(Color.BLACK);
-        // g.fillOval(this.target.getX() - UNIT_SIZE / 2, this.target.getY() - UNIT_SIZE
-        // / 2, UNIT_SIZE, UNIT_SIZE);
     }
 
     // ----------------- BUTTONS -----------------//
@@ -139,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable, ActionListener {
                 this.startGame();
                 bgm.start();
                 this.playBoom = false;
+                this.flicker = 3;
                 boom.stop();
 
                 break;
